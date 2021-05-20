@@ -38,3 +38,8 @@ body
 {
     align-self: center;
 }
+.pagination
+{
+    display: flex;
+    justify-content: center;
+}
