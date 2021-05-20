@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}real-S-taste{% endblock %}</title>
+    </head>
+
+
+
+
+    <body>
+    <div class = "bloc"> </div>
+    <div class = "bloc">
+
+        <div class = "entete">
+                <div class=" inner-entete">   {% include("entete/entete.html.twig") %} </div>
+                <div class = "inner-entete">   {% include("nav/nav.html.twig") %} </div>
+
+        </div>
+        <div class=" corps">
+
+
+        {% block body %}{% endblock %}
+
+        </div>
+
+        {% include("nav/nav.html.twig") %}
+    </div>
+    <div class = "bloc"> </div>
+    </body>
+</html>
