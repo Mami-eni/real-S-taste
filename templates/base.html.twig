@@ -1,31 +1,33 @@
 <!DOCTYPE html>
+<html lang="en">
 <html>
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}real-S-taste{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     </head>
 
-
-
-
     <body>
-    <div class = "bloc"> </div>
-    <div class = "bloc">
+        <div class = "bloc"> </div>
 
-        <div class = "entete">
-                <div class=" inner-entete">   {% include("entete/entete.html.twig") %} </div>
-                <div class = "inner-entete">   {% include("nav/nav.html.twig") %} </div>
+        <div class = "bloc">
 
+            <div class = "entete">
+                    <div class=" inner-entete">   {% include("entete/entete.html.twig") %} </div>
+                    <div class = "inner-entete">   {% include("nav/nav.html.twig") %} </div>
+            </div>
+
+            {% block body %}{% endblock %}
+
+
+
+                {% include("nav/nav.html.twig") %}
         </div>
-        <div class=" corps">
+
+            <div class = "bloc"> </div>
 
 
-        {% block body %}{% endblock %}
 
-        </div>
 
-        {% include("nav/nav.html.twig") %}
-    </div>
-    <div class = "bloc"> </div>
     </body>
 </html>
