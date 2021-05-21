@@ -3,6 +3,26 @@
 {% block body %}
  <h1> HERE ALL RESIDENCES  </h1>
 
+
+
+     <ul class = "grille">
+      {% for residence in residenceList %}
+           <li class="grid-item"> <a href=" {{ path('residence_detail',{'id':residence.id}) }}">  <P> {{ residence.type}} </P></a>
+
+               <p> creation: {{ residence.dateParution|date("Y-m-d")}}  </p>
+            <p> Price: {{ residence.prix }}</p>
+               <P> {{ residence.id}} </P>
+
+           </li>
+
+
+      {% else %}
+       <p>  No residence available! </p>
+
+      {% endfor %}
+     </ul>
+
+
 {% endblock %}
 
 {% block title %}

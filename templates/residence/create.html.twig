@@ -8,5 +8,109 @@
 {% block body %}
     <h1> ADD NEW RESIDENCE </h1>
 
+
+<div class = "formulaire">
+    <div class = "formulaireLine">
+        <div class ="labelinput">
+            <div class=" label"> {{ form_label(formulaire.type) }} </div>
+            <div class=" input"> {{ form_widget(formulaire.type)}} </div>
+        </div >
+
+        <div class = "error"> {{ form_errors(formulaire.type) }} </div>
+    </div>
+
+    <div class = "formulaireLine">
+        <div class ="labelinput">
+            <div class="label"> {{ form_label(formulaire.isVenteOrLocation) }} </div>
+            <div class="input"> {{ form_widget(formulaire.isVenteOrLocation)}} </div>
+        </div >
+
+        <div class = "error"> {{ form_errors(formulaire.isVenteOrLocation) }} </div>
+    </div>
+
+
+    <div class = "formulaireLine">
+        <div class = "labelinput">
+            <div class = "label"> {{ form_label(formulaire.adresse) }} </div>
+            <div class = "input"> {{ form_widget(formulaire.adresse)}} </div>
+        </div >
+
+        <div class = "error"> {{ form_errors(formulaire.adresse) }} </div>
+    </div>
+
+    <div class = "formulaireLine">
+        <div class = "labelinput">
+            <div class="label"> {{ form_label(formulaire.nombre_pieces) }} </div>
+            <div class = "input"> {{ form_widget(formulaire.nombre_pieces)}} </div>
+        </div >
+
+        <div class = "error"> {{ form_errors(formulaire.nombre_pieces) }} </div>
+    </div>
+
+    <div class = "formulaireLine">
+        <div class = "labelinput">
+            <div class = "label"> {{ form_label(formulaire.superficie) }} </div>
+            <div class = "input"> {{ form_widget(formulaire.superficie)}} </div>
+        </div >
+
+        <div class = "error"> {{ form_errors(formulaire.superficie) }} </div>
+    </div>
+
+    <div class = "formulaireLine">
+        <div class = "labelinput">
+            <div class = "label"> {{ form_label(formulaire.isGarage) }} </div>
+            <div class = "input"> {{ form_widget(formulaire.isGarage)}} </div>
+        </div >
+
+        <div class = "error"> {{ form_errors(formulaire.isGarage) }} </div>
+    </div>
+
+    <div class = "formulaireLine">
+        <div class = "labelinput">
+            <div class = "label"> {{ form_label(formulaire.piscine) }} </div>
+            <div class = "input"> {{ form_widget(formulaire.piscine)}} </div>
+        </div >
+
+        <div class = "error"> {{ form_errors(formulaire.piscine) }} </div>
+    </div>
+
+    <div class = "formulaireLine">
+        <div class = "labelinput">
+            <div class = "label"> {{ form_label(formulaire.isExterieur) }} </div>
+            <div class = "input"> {{ form_widget(formulaire.isExterieur)}} </div>
+        </div >
+
+        <div class = "error"> {{ form_errors(formulaire.isExterieur) }} </div>
+    </div>
+
+    <div class = "formulaireLine">
+        <div class = "labelinput">
+            <div class = "label"> {{ form_label(formulaire.surface_exterieur) }} </div>
+            <div class = "input"> {{ form_widget(formulaire.surface_exterieur)}} </div>
+        </div >
+
+        <div class = "error"> {{ form_errors(formulaire.surface_exterieur) }} </div>
+
+    </div>
+
+    <div class = "formulaireLine">
+        <div class = "labelinput">
+            <div class = "label"> {{ form_label(formulaire.prix) }} </div>
+            <div class = "input"> {{ form_widget(formulaire.prix)}} </div>
+        </div >
+
+        <div class = "error"> {{ form_errors(formulaire.prix) }} </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+    {{  form_end (formulaire)}}
+
 {% endblock %}
 

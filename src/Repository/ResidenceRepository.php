@@ -19,6 +19,19 @@ class ResidenceRepository extends ServiceEntityRepository
         parent::__construct($registry, Residence::class);
     }
 
+    public function findAllAndPagination($page)
+    {
+        $queryBuilder = $this->createQueryBuilder('r');
+        $queryBuilder->orderBy("r.date_parution","DESC");
+        $query = $queryBuilder->getQuery();
+
+        $offset = ($page -1) *10;
+       // $query->setFirstResult($offset);
+        //$query->setMaxResults(10);
+        return $query->getResult();
+
+    }
+
     // /**
     //  * @return Residence[] Returns an array of Residence objects
     //  */

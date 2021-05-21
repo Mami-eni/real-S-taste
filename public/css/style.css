@@ -43,3 +43,62 @@ body
     display: flex;
     justify-content: center;
 }
+
+.grille {
+    max-width: 1300px;
+    width: 80%;
+    height: auto;
+    margin: 30px auto;
+    /* border: 1px solid #333; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    grid-gap: 2em;
+    text-decoration: none;
+}
+.grid-item {
+    width: 10em;
+    height: 10em;
+    background: white;
+}
+
+.error
+{
+    text-decoration-color: #B0413E;
+}
+
+.labelinput
+{
+    display: grid;
+    grid-template-columns: auto auto ;
+    grid-gap: 1em;
+    align-self: center;
+}
+
+.label
+{
+    width: 8em;
+    height: 2em;
+}
+
+.input
+{
+    width: 10em;
+    height: 2em;
+}
+
+
+
+.formulaireLine
+{
+    width: 30%;
+
+}
+
+.formulaire
+{
+    display: grid;
+    justify-content: center;
+
+}
+
