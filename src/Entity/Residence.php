@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ResidenceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ResidenceRepository::class)
@@ -18,51 +19,102 @@ class Residence
     private $id;
 
     /**
+     *  @Assert\NotBlank(message="Please provide a surface size")
+     *  @Assert\Type(
+     *     type="float",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )
      * @ORM\Column(type="decimal", precision=8, scale=2)
      */
     private $superficie;
 
     /**
+     *
+     *  @Assert\NotBlank(message="Please provide the number of rooms")
+     * * @Assert\Type(
+     *     type="integer",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )
      * @ORM\Column(type="integer")
      */
     private $nombre_pieces;
 
     /**
+     *  @Assert\NotBlank(message="Please provide the residence type")
+     * * @Assert\Type(
+     *     type="string",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )
      * @ORM\Column(type="string", length=255)
      */
     private $type;
 
     /**
+     * @Assert\NotBlank(message="Please provide a address")
+     * * @Assert\Type(
+     *     type="string",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )
      * @ORM\Column(type="text")
      */
     private $adresse;
 
     /**
+     *  @Assert\NotBlank(message="Please is there a pool ")
+     * * @Assert\Type(
+     *     type="boolean",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )
      * @ORM\Column(type="boolean")
      */
     private $piscine;
 
     /**
+     *  @Assert\NotBlank(message="Please is there a outside ")
+     * * @Assert\Type(
+     *     type="boolean",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )
      * @ORM\Column(type="boolean")
      */
     private $isExterieur;
 
     /**
+     * * @Assert\Type(
+     *     type="float",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )
+     *
      * @ORM\Column(type="decimal", precision=8, scale=2, nullable=true)
      */
     private $surface_exterieur;
 
     /**
+     *  @Assert\NotBlank(message="Please is there a garage ")
+     * * @Assert\Type(
+     *     type="boolean",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )
      * @ORM\Column(type="boolean")
      */
     private $isGarage;
 
     /**
+     *  @Assert\NotBlank(message="Please is it a rent or a sale ")
+     * * @Assert\Type(
+     *     type="boolean",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )
      * @ORM\Column(type="boolean")
      */
     private $isVenteOrLocation;
 
     /**
+     *  @Assert\NotBlank(message="Please provide the price ")
+     * * @Assert\Type(
+     *     type="float",
+     *     message="The value {{ value }} is not a valid {{ type }}."
+     * )
      * @ORM\Column(type="decimal", precision=11, scale=2)
      */
     private $prix;
