@@ -8,6 +8,14 @@
 {% block body %}
     <h1> RESIDENCE DETAILS </h1>
 
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
     <p>  {{ residence.type }} </p>
       <p> {{ residence.adresse }} </p>
    <p> {{ residence.prix }} </p>

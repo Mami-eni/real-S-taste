@@ -72,11 +72,25 @@ class ResidenceController extends AbstractController
 
         if($residenceFormulaire->isSubmitted() && $residenceFormulaire->isValid())
         {
-            $entityManager->persist($residence);
-            $entityManager->flush();
-            $this->addFlash( "success","New residence successfully added!");
+            // verifications si la combinaison presence exterieur et surface garage sont coherents
+            if($residence->getIsExterieur() && null!=$residence->getSurfaceExterieur() || ( !$residence->getIsExterieur() && null==$residence->getSurfaceExterieur() ))
+            {
+                $entityManager->persist($residence);
+                $entityManager->flush();
+                $this->addFlash( "success","New residence successfully added!");
 
-            return $this->redirectToRoute("residence_detail", ["id"=>$residence->getId()]);
+                return $this->redirectToRoute("residence_detail", ["id"=>$residence->getId()]);
+
+            }
+
+            else
+            {
+                $this->addFlash( "error"," there is an error with the exterior informations");
+                return $this->render('residence/create.html.twig', [ "formulaire"=> $residenceFormulaire ->createView()
+
+                ]);
+            }
+
         }
 
 

@@ -102,3 +102,15 @@ body
 
 }
 
+.flash-error
+{
+    background-color: coral;
+}
+.flash-success
+{
+    background-color: darkgreen;
+}
+#exterior_surface_response
+{
+    display: none;
+}

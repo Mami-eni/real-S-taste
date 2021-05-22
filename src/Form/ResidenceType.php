@@ -20,17 +20,18 @@ class ResidenceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('superficie',NumberType::class , [ "scale"=>2,"required"=>false, "label"=>"Superficy"])
-            ->add('nombre_pieces', IntegerType::class, ["label"=>"Rooms"])
+            ->add('superficie',NumberType::class , ["scale"=>2, "label"=>"Superficy", "attr"=>[ "min"=>0]])
+            ->add('nombre_pieces', IntegerType::class, ["label"=>"Rooms", "attr"=>[ "min"=>1]])
             ->add('adresse', TextType::class, ["label"=>"Adress"])
-            ->add('type', ChoiceType::class, [ "choices"=>["Appartement"=>"appartement","House"=> "maison","Yourte"=> "yourte"], "label"=>"Residence type"])
-            ->add('piscine', RadioType::class, ["label"=>"Pool ?"])
-            ->add('isExterieur', RadioType::class, ["label"=>"Yard ?"])
-            ->add('surface_exterieur' , NumberType::class,["scale"=>2, "label"=>"Yard surface", "required"=>false])
-            ->add('isGarage', RadioType::class, ["label"=>"Garage ?"])
-            ->add('isVenteOrLocation', RadioType::class, ["label"=>"Sale ?"])
-            ->add('prix', NumberType::class, ["label"=>"Price", "scale"=>2])
-            ->add('Create', ButtonType::class)
+            ->add('type', ChoiceType::class, [ "choices"=>["Flat"=>"flat","House"=> "house","Yourte"=> "yourte"], "label"=>"Residence type"])
+            ->add('piscine', ChoiceType::class, [ "choices" =>["Yes"=>1,"No"=>0], "label"=>"Pool ?", "expanded"=>true])
+            ->add('isExterieur', ChoiceType::class, [  "choices" =>["Yes"=>1,"No"=>0],"label"=>"Yard ?",  "expanded"=>true,
+                                                                  'attr' => [ 'class' => 'exterior_surface']] )
+            ->add('surface_exterieur' , NumberType::class,["scale"=>2, "label"=>"Yard surface", "required"=>false, "attr"=>[ "min"=>0]])
+            ->add('isGarage', ChoiceType::class, [ "choices" =>["Yes"=>1,"No"=>0],"label"=>"Garage ?", "expanded"=>true])
+            ->add('isVenteOrLocation', ChoiceType::class, ["choices" =>["Yes"=>1,"No"=>0] ,"label"=>"Sale ?", "expanded"=>true])
+            ->add('prix', NumberType::class, ["label"=>"Price", "scale"=>2, "attr"=>[ "min"=>0]])
+
 
         ;
     }

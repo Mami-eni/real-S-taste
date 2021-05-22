@@ -11,6 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Residence
 {
+
+    const RESIDENCE_TYPES = ["flat","house","yourte"];
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -45,6 +47,7 @@ class Residence
      *     type="string",
      *     message="The value {{ value }} is not a valid {{ type }}."
      * )
+     * * @Assert\Choice(choices = Residence::RESIDENCE_TYPES, message = "Choose a valide type")
      * @ORM\Column(type="string", length=255)
      */
     private $type;
@@ -55,6 +58,7 @@ class Residence
      *     type="string",
      *     message="The value {{ value }} is not a valid {{ type }}."
      * )
+     * @Assert\Length(min=2, max=2000, minMessage="minimum 2 caracteres", maxMessage=" maximum 2000 ")
      * @ORM\Column(type="text")
      */
     private $adresse;
@@ -134,7 +138,7 @@ class Residence
         return $this->superficie;
     }
 
-    public function setSuperficie(string $superficie): self
+    public function setSuperficie(float $superficie): self
     {
         $this->superficie = $superficie;
 
