@@ -71,7 +71,8 @@ body
 {
     display: grid;
     grid-template-columns: auto auto ;
-    grid-gap: 1em;
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
     align-self: center;
 }
 
@@ -79,12 +80,14 @@ body
 {
     width: 8em;
     height: 2em;
+    margin-top: 2em;
 }
 
 .input
 {
     width: 10em;
     height: 2em;
+    margin-top: 2em;
 }
 
 

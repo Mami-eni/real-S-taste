@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Residence;
+use App\Form\FiltreType;
 use App\Form\ResidenceType;
+use App\Other\Filtre;
 use App\Repository\ResidenceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,7 +18,7 @@ class ResidenceController extends AbstractController
     /**
      * @Route("/", name="residence_list")
      */
-    public function list( int $page=1, ResidenceRepository $residenceRepository): Response
+    public function list( int $page=1, Request $request,ResidenceRepository $residenceRepository): Response
     {
 
         //$residenceList = $residenceRepository->findBy([],["date_parution"=>"DESC"],10,0);
@@ -25,16 +27,42 @@ class ResidenceController extends AbstractController
         $maxPage = ceil($nombreResidence/10);
         //if($page >=1 && $nombreResidence <= $maxPage)
        // {
-            $residenceList = $residenceRepository->findAllAndPagination($page);
+           $residenceList = $residenceRepository->findAllAndPagination($page);
 
        // }
+
+
+        $filtre = new Filtre();
+        $filtreFormulaire = $this->createForm(FiltreType::class, $filtre);
+
+        $filtreFormulaire->handleRequest($request);
+
+
+        if($filtreFormulaire->isSubmitted() && $filtreFormulaire->isValid())
+        {
+           $type = $filtre->getType();
+           $isSale= $filtre->getIsVenteOrLocation();
+           $adress = $filtre->getAdresse();
+           $rooms = $filtre ->getNombrePieces();
+           $superficy = $filtre->getSuperficie();
+           $isGarage = $filtre->getIsGarage();
+           $isPool= $filtre->getPiscine();
+           $isYard= $filtre->getIsExterieur();
+           $yardSupericie = $filtre->getSurfaceExterieur();
+           $price = $filtre ->getPrix();
+           $date = $filtre->getDateParution();
+
+            $residenceList = $residenceRepository->
+            findByFiltre($type, $isSale, $adress, $rooms, $superficy, $isGarage, $isPool, $isYard, $yardSupericie, $price, $date);
+        }
 
 
 
         return $this->render('residence/list.html.twig', [
             "residenceList"=>$residenceList,
             "currentPage"=>$page,
-            "maxPage" => $maxPage
+            "maxPage" => $maxPage,
+            "formulaire"=> $filtreFormulaire->createView()
 
         ]);
     }
@@ -72,6 +100,7 @@ class ResidenceController extends AbstractController
 
         if($residenceFormulaire->isSubmitted() && $residenceFormulaire->isValid())
         {
+
             // verifications si la combinaison presence exterieur et surface garage sont coherents
             if($residence->getIsExterieur() && null!=$residence->getSurfaceExterieur() || ( !$residence->getIsExterieur() && null==$residence->getSurfaceExterieur() ))
             {

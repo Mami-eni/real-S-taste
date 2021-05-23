@@ -22,7 +22,7 @@ class ResidenceType extends AbstractType
         $builder
             ->add('superficie',NumberType::class , ["scale"=>2, "label"=>"Superficy", "attr"=>[ "min"=>0]])
             ->add('nombre_pieces', IntegerType::class, ["label"=>"Rooms", "attr"=>[ "min"=>1]])
-            ->add('adresse', TextType::class, ["label"=>"Adress"])
+            ->add('adresse', TextareaType::class, ["label"=>"Adress"])
             ->add('type', ChoiceType::class, [ "choices"=>["Flat"=>"flat","House"=> "house","Yourte"=> "yourte"], "label"=>"Residence type"])
             ->add('piscine', ChoiceType::class, [ "choices" =>["Yes"=>1,"No"=>0], "label"=>"Pool ?", "expanded"=>true])
             ->add('isExterieur', ChoiceType::class, [  "choices" =>["Yes"=>1,"No"=>0],"label"=>"Yard ?",  "expanded"=>true,
