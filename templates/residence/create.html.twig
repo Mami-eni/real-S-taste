@@ -23,6 +23,7 @@
         <div class ="labelinput">
             <div class="label"> {{ form_label(formulaire.isVenteOrLocation) }} </div>
             <div class="input"> {{ form_widget(formulaire.isVenteOrLocation)}} </div>
+
         </div >
 
         <div class = "error"> {{ form_errors(formulaire.isVenteOrLocation) }} </div>
@@ -96,15 +97,19 @@
 
     </div>
 
+
     <div class = "formulaireLine">
         <div class = "labelinput">
             <div class = "label"> {{ form_label(formulaire.prix) }} </div>
             <div class = "input"> {{ form_widget(formulaire.prix)}} </div>
+
         </div >
 
         <div class = "error"> {{ form_errors(formulaire.prix) }} </div>
 
     </div>
+
+
 </div>
 
     <button> SEND </button>

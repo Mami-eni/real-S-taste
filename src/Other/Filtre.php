@@ -117,6 +117,8 @@ class Filtre
     private $prix;
 
     /**
+    
+     *
      *
      */
     private $date_parution;
@@ -246,12 +248,12 @@ class Filtre
         return $this;
     }
 
-    public function getDateParution(): ?string
+    public function getDateParution(): ?\DateTimeInterface
     {
         return $this->date_parution;
     }
 
-    public function setDateParution(string $date_parution=null): self
+    public function setDateParution(?\DateTimeInterface $date_parution=null): self
     {
         $this->date_parution = $date_parution;
 

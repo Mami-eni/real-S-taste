@@ -81,11 +81,44 @@ class ResidenceController extends AbstractController
     }
 
     /**
-     * @Route("/detail/update", name="residence_update")
+     * @Route("/detail/update/{id}", name="residence_update", requirements= {"id"="\d+"})
      */
-    public function update(): Response
+    public function update($id, ResidenceRepository $residenceRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
-        return $this->render('residence/create.html.twig', [
+
+        $residence = $residenceRepository->find($id);
+        $residenceFormulaire = $this->createForm(ResidenceType::class, $residence);
+        $residenceFormulaire->handleRequest($request);
+
+
+        if($residenceFormulaire->isSubmitted() && $residenceFormulaire->isValid())
+        {
+            dump($residence);
+
+            // verifications si la combinaison presence exterieur et surface garage sont coherents
+            if($residence->getIsExterieur() && null!=$residence->getSurfaceExterieur() || ( !$residence->getIsExterieur() && null==$residence->getSurfaceExterieur() ))
+            {
+                $entityManager->persist($residence);
+                $entityManager->flush();
+                $this->addFlash( "success","Residence successfully Modified!");
+
+                return $this->redirectToRoute("residence_detail", ["id"=>$residence->getId()]);
+
+            }
+
+            else
+            {
+                $this->addFlash( "error"," there is an error with the exterior informations");
+                return $this->render('residence/update.html.twig', [ "formulaire"=> $residenceFormulaire ->createView()
+
+                ]);
+            }
+
+        }
+
+
+        return $this->render("residence/update.html.twig", ["residence"=>$residence,
+            "formulaire"=> $residenceFormulaire ->createView() // poser la question de la difference avec render et pourquoi les liens ne sont pas les memes
 
         ]);
     }
@@ -101,6 +134,7 @@ class ResidenceController extends AbstractController
 
         if($residenceFormulaire->isSubmitted() && $residenceFormulaire->isValid())
         {
+            dump($residence);
 
             // verifications si la combinaison presence exterieur et surface garage sont coherents
             if($residence->getIsExterieur() && null!=$residence->getSurfaceExterieur() || ( !$residence->getIsExterieur() && null==$residence->getSurfaceExterieur() ))
@@ -127,5 +161,8 @@ class ResidenceController extends AbstractController
         return $this->render('residence/create.html.twig', [ "formulaire"=> $residenceFormulaire ->createView()
 
         ]);
+
     }
+
+
 }
