@@ -36,6 +36,7 @@ class ResidenceController extends AbstractController
         $filtreFormulaire = $this->createForm(FiltreType::class, $filtre);
 
         $filtreFormulaire->handleRequest($request);
+    dump($filtre);
 
 
         if($filtreFormulaire->isSubmitted() && $filtreFormulaire->isValid())

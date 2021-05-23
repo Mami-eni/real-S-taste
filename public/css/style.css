@@ -117,3 +117,16 @@ body
 {
     display: none;
 }
+
+#filtre_dateParution
+{
+    display: flex;
+}
+#filtre_dateParution_date
+{
+    display: flex;
+}
+#filtre_dateParution_time
+{
+    display: flex;
+}

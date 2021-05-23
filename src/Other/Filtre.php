@@ -59,7 +59,7 @@ class Filtre
      *
 
      * * @Assert\Type(
-     *     type="boolean",
+     *     type="bool",
      *     message="The value {{ value }} is not a valid {{ type }}."
      * )
 
@@ -69,7 +69,7 @@ class Filtre
     /**
 
      * * @Assert\Type(
-     *     type="boolean",
+     *     type="bool",
      *     message="The value {{ value }} is not a valid {{ type }}."
      * )
 
@@ -89,7 +89,7 @@ class Filtre
     /**
 
      * * @Assert\Type(
-     *     type="boolean",
+     *     type="bool",
      *     message="The value {{ value }} is not a valid {{ type }}."
      * )
      *
@@ -99,7 +99,7 @@ class Filtre
     /**
 
      * * @Assert\Type(
-     *     type="boolean",
+     *     type="bool",
      *     message="The value {{ value }} is not a valid {{ type }}."
      * )
 
@@ -117,10 +117,6 @@ class Filtre
     private $prix;
 
     /**
-     * * @Assert\Type(
-     *     type="datetime",
-     *     message="The value {{ value }} is not a valid {{ type }}."
-     * )
      *
      */
     private $date_parution;
@@ -250,12 +246,12 @@ class Filtre
         return $this;
     }
 
-    public function getDateParution(): ?\DateTimeInterface
+    public function getDateParution(): ?string
     {
         return $this->date_parution;
     }
 
-    public function setDateParution(\DateTimeInterface $date_parution): self
+    public function setDateParution(string $date_parution=null): self
     {
         $this->date_parution = $date_parution;
 

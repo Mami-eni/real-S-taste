@@ -49,53 +49,58 @@ class ResidenceRepository extends ServiceEntityRepository
         $price= $price;
         $dateParution= null;
 
-        if(null !=$value)
+
+        if(!is_null ($value))
         {
+
             $queryBuilder->andWhere("f.type ='$value'");
 
         }
 
-       if(null != $boolVente)
-       {
-           $queryBuilder->andWhere("f.isVenteOrLocation='$boolVente'");
-       }
 
-       if(null != $adresse)
+
+          //dd($boolVente);
+        if(!is_null($boolVente))
+        {
+            $queryBuilder->andWhere("f.isVenteOrLocation='$boolVente'");
+        }
+
+       if( !is_null($adresse))
        {
            $queryBuilder->andWhere("f.adresse LIKE '%$adresse%' ");
        }
 
-       if(null != $nbrePieces)
+       if(!is_null($nbrePieces))
        {
            $queryBuilder->andWhere("f.nombre_pieces= $nbrePieces");
        }
 
-        if(null != $superficie)
+        if( !is_null($superficie) )
         {
             $queryBuilder->andWhere("f.superficie= $superficie");
         }
 
-        if(null != $boolGarage)
+        if(!is_null($boolGarage))
         {
             $queryBuilder->andWhere("f.isGarage='$boolGarage'");
         }
 
-        if(null != $boolPool)
+        if( !is_null($boolPool))
         {
             $queryBuilder->andWhere("f.piscine='$boolPool'");
         }
 
-        if(null != $boolYard)
+        if(! is_null($boolYard))
         {
             $queryBuilder->andWhere("f.isExterieur='$boolYard'");
         }
 
-        if(null != $surfaceYard)
+        if( ! is_null( $surfaceYard))
         {
             $queryBuilder->andWhere("f.surface_exterieur= $surfaceYard");
         }
 
-        if(null != $dateParution)
+        if( ! is_null($dateParution))
         {
             $queryBuilder->andWhere("f.date_parution= $dateParution");
         }
