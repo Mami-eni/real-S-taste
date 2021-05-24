@@ -123,14 +123,32 @@ class ResidenceController extends AbstractController
         ]);
     }
     /**
-     * @Route("/create", name="residence_create")
+     * @Route("/create/{id}", name="residence_create"), requirements= {"page"="\d+"}
      */
-    public function create( Request  $request, EntityManagerInterface  $entityManager): Response
+    public function create( $id=0, Request  $request, EntityManagerInterface  $entityManager, ResidenceRepository $residenceRepository): Response
     {
-        $residence = new Residence();
+
+        if(0===$id)
+        {
+            $residence = new Residence();
+            $residence->setDateParution(new \DateTime());
+            $message = "New residence successfully added!";
+        }
+
+        else
+        {
+            $residence = $residenceRepository->find($id);
+            $message= "Residence successfully Modified!";
+
+        }
+
+
+
         $residenceFormulaire = $this->createForm(ResidenceType::class, $residence);
-        $residence->setDateParution(new \DateTime());
+
         $residenceFormulaire->handleRequest($request);
+
+        // message success different et setdate parution aussi selon la valeur du parametre passer en ref
 
         if($residenceFormulaire->isSubmitted() && $residenceFormulaire->isValid())
         {
@@ -141,7 +159,7 @@ class ResidenceController extends AbstractController
             {
                 $entityManager->persist($residence);
                 $entityManager->flush();
-                $this->addFlash( "success","New residence successfully added!");
+                $this->addFlash( "success",$message);
 
                 return $this->redirectToRoute("residence_detail", ["id"=>$residence->getId()]);
 
@@ -158,7 +176,7 @@ class ResidenceController extends AbstractController
         }
 
 
-        return $this->render('residence/create.html.twig', [ "formulaire"=> $residenceFormulaire ->createView()
+        return $this->render('residence/create.html.twig', [ "residence"=>$residence,"formulaire"=> $residenceFormulaire ->createView()
 
         ]);
 
